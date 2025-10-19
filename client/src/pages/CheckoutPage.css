@@ -1,0 +1,44 @@
+.checkout-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    gap: 40px;
+}
+
+.checkout-form-section {
+    flex: 2;
+}
+
+.checkout-summary-section {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    height: fit-content;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.summary-item,
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.summary-total {
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
