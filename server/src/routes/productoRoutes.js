@@ -7,13 +7,15 @@ const {
     updateProducto,
     deleteProducto
 } = require('../controllers/productoController'); // Asegúrate que el nombre del archivo coincida
+const { protect } = require('../middlewares/authMiddleware');
 
 // Rutas para /api/productos
 
 router.get('/', getAllProductos);
 router.get('/:id', getProductoById);
-router.post('/', createProducto);
-router.put('/:id', updateProducto);
-router.delete('/:id', deleteProducto);
+
+router.post('/', protect, createProducto);
+router.put('/:id', protect, updateProducto);
+router.delete('/:id', protect, deleteProducto);
 
 module.exports = router;
