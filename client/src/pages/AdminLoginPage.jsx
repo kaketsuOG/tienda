@@ -1,3 +1,4 @@
+// src/pages/AdminLoginPage.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../services/apiClient';
@@ -7,49 +8,59 @@ const AdminLoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
+        setLoading(true);
         try {
             const response = await apiClient.post('/admin/login', { email, password });
-
-            // Guardamos el token en el localStorage del navegador
             localStorage.setItem('adminToken', response.data.token);
-
-            // Aquí redirigiremos al panel de admin
-            alert('¡Inicio de sesión exitoso!');
             navigate('/admin/dashboard');
-            // window.location.href = '/admin/dashboard'; // Redirección simple por ahora
-
         } catch (err) {
             setError('Credenciales inválidas. Por favor, intenta de nuevo.');
-            console.error(err);
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
-        <div className="login-container">
-            <form onSubmit={handleSubmit} className="login-form">
-                <h2>Panel de Administrador</h2>
-                <input 
-                    type="email" 
-                    placeholder="Email" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required 
-                />
-                <input 
-                    type="password" 
-                    placeholder="Contraseña"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Iniciar Sesión</button>
-                {error && <p className="error-message">{error}</p>}
-            </form>
+        <div className="login-page">
+            <div className="login-branding">
+                <h1>MiTienda</h1>
+                <p>Panel de Administración</p>
+            </div>
+            <div className="login-form-container">
+                <form onSubmit={handleSubmit} className="login-form">
+                    <h2>Iniciar Sesión</h2>
+                    <div className="input-group">
+                        <label htmlFor="email">Correo Electrónico</label>
+                        <input
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="password">Contraseña</label>
+                        <input
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    {error && <p className="error-message">{error}</p>}
+                    <button type="submit" disabled={loading}>
+                        {loading ? 'Ingresando...' : 'Ingresar'}
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };

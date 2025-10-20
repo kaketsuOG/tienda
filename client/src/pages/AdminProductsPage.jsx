@@ -1,6 +1,6 @@
 // src/pages/AdminProductsPage.jsx
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+
 import apiClient from '../services/apiClient';
 import ProductFormModal from '../components/admin/ProductFormModal'; // Importamos el modal
 import './AdminProductsPage.css';
@@ -44,27 +44,70 @@ const AdminProductsPage = () => {
     };
 
     // Función para guardar (crear o actualizar) un producto
-    const handleSave = async (productoData) => {
-        const token = localStorage.getItem('adminToken');
-        const config = {
-            headers: { Authorization: `Bearer ${token}` }
-        };
+    const handleSave = async (productoData, imageFile) => {
+        console.log('--- PASO 1: Inicia la función handleSave ---');
 
-        try {
-            if (productToEdit) {
-                // --- Lógica de Actualización (PUT) ---
-                await apiClient.put(`/productos/${productToEdit.id}`, productoData, config);
-            } else {
-                // --- Lógica de Creación (POST) ---
-                await apiClient.post('/productos', productoData, config);
-            }
-            setIsModalOpen(false); // Cierra el modal
-            fetchProductos();     // Refresca la lista de productos
-        } catch (err) {
-            console.error('Error al guardar el producto:', err);
-            setError('No se pudo guardar el producto.');
+    const token = localStorage.getItem('adminToken');
+    if (!token) {
+        console.error('Error: No se encontró token de administrador.');
+        setError("Sesión expirada. Por favor, inicia sesión de nuevo.");
+        return;
+    }
+    console.log('--- PASO 2: Token encontrado ---');
+
+    // Hacemos una copia de los datos del producto para poder modificarla de forma segura
+    let finalProductData = { ...productoData };
+    
+    // Mantenemos el modal abierto mientras se procesa
+    setIsModalOpen(true); 
+
+    try {
+        // --- PASO 3: Verifica si se seleccionó un archivo de imagen ---
+        if (imageFile) {
+            console.log('--- PASO 4: Se detectó un archivo de imagen. Intentando subir... ---', imageFile);
+            
+            const formData = new FormData();
+            formData.append('image', imageFile);
+
+            const configUpload = {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            };
+
+            const uploadResponse = await apiClient.post('/upload', formData, configUpload);
+            
+            console.log('--- PASO 5: Imagen subida con éxito. URL recibida: ---', uploadResponse.data.imageUrl);
+            finalProductData.imagen_url = uploadResponse.data.imageUrl;
+        } else {
+            console.log('--- PASO 4: No se detectó un nuevo archivo de imagen. Saltando la subida. ---');
         }
-    };
+
+        // --- PASO 6: Intentando guardar los datos del producto en la base de datos ---
+        const configSave = { headers: { 'Authorization': `Bearer ${token}` } };
+
+        if (productToEdit) {
+            console.log('Actualizando producto existente con ID:', productToEdit.id);
+            await apiClient.put(`/productos/${productToEdit.id}`, finalProductData, configSave);
+        } else {
+            console.log('Creando nuevo producto.');
+            await apiClient.post('/productos', finalProductData, configSave);
+        }
+
+        console.log('--- PASO 7: Producto guardado con éxito. Cerrando modal y refrescando. ---');
+        setIsModalOpen(false);
+        fetchProductos();
+        setProductToEdit(null);
+
+    } catch (err) {
+        console.error('Error al guardar el producto:', err);
+        // Mostramos un error más específico si es posible
+        const errorMsg = err.response?.data?.message || 'No se pudo guardar el producto.';
+        setError(errorMsg);
+        // No cerramos el modal si hay un error, para que el usuario pueda intentarlo de nuevo.
+    }
+};
 
     // Función para eliminar un producto
     const handleDelete = async (id) => {
@@ -122,7 +165,7 @@ const AdminProductsPage = () => {
             </tbody>
             </table>
             
-            <Link to="/admin/dashboard" className="back-link">← Volver al Dashboard</Link>
+        
 
             {/* --- Renderizado condicional del modal --- */}
             {isModalOpen && (

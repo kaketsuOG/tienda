@@ -8,8 +8,10 @@ import CheckoutPage from './pages/CheckoutPage';
 import ConfirmationPage from './pages/ConfirmationPage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import AdminProductsPage from './pages/AdminProductsPage';
+import AdminCategoriasPage from './pages/AdminCategoriasPage';
 import './App.css';
 
 function App() {
@@ -17,14 +19,23 @@ function App() {
     <div className="App">
       
         <Routes>
-          <Route path="/*" element={<PublicLayout />} />
-          <Route path="/admin/login" element={<AdminLoginPage />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
-            <Route path="/admin/productos" element={<AdminProductsPage />} />
-          </Route>
-        </Routes>
-      
+        {/* --- RUTAS PÚBLICAS --- */}
+        <Route path="/*" element={<PublicLayout />} />
+
+        {/* --- RUTAS DE ADMIN --- */}
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+        
+        {/* Aquí usamos nuestro vigilante 'ProtectedRoute' */}
+        <Route element={<ProtectedRoute />}>
+            {/* Y ahora, todas las rutas protegidas usan AdminLayout como su esqueleto */}
+            <Route path="/admin" element={<AdminLayout />}>
+                <Route path="dashboard" element={<AdminDashboardPage />} />
+                <Route path="productos" element={<AdminProductsPage />} />
+                <Route path="categorias" element={<AdminCategoriasPage />} />
+                {/* Agrega aquí futuras rutas como <Route path="reservas" ... /> */}
+            </Route>
+        </Route>
+      </Routes>
     </div>
   );
 }
