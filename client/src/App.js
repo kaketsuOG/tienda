@@ -12,6 +12,8 @@ import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import AdminProductsPage from './pages/AdminProductsPage';
 import AdminCategoriasPage from './pages/AdminCategoriasPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import './App.css';
 
 function App() {
@@ -50,6 +52,8 @@ const PublicLayout = () => (
         <Route path="/reserva" element={<ReservaPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/confirmacion" element={<ConfirmationPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/registro" element={<RegisterPage />} />
       </Routes>
     </main>
   </>

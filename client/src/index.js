@@ -4,16 +4,18 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import { CartProvider } from './context/CartContext';
+import { AuthProvider } from './context/AuthContext';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* 2. ENVUELVE TU APP CON EL CARTPROVIDER */}
-      <CartProvider>
-        <App />
-      </CartProvider>
+     <AuthProvider> {/* <-- Envuelve con AuthProvider */}
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

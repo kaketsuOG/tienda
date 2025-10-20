@@ -34,3 +34,25 @@
     font-weight: bold;
     border: 1px solid white;
 }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.nav-user {
+    color: #ecf0f1;
+}
+.nav-button, .nav-button-primary {
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    background: transparent;
+    cursor: pointer;
+}
+.nav-button-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+}

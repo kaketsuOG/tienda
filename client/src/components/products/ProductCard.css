@@ -1,57 +1,83 @@
+
 .product-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px; /* Bordes más suaves */
+    overflow: hidden;
+    text-align: left; /* Alineamos el texto a la izquierda */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-container { /* Nuevo contenedor para la imagen */
+    width: 100%;
+    padding-top: 100%; /* Esto crea un ratio de 1:1 (cuadrado) */
+    position: relative;
+    overflow: hidden;
 }
 
 .product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 200px;
-    object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05); /* Efecto de zoom sutil */
 }
 
 .product-info {
-    padding: 15px;
+    padding: 20px;
+    flex-grow: 1; /* Empuja el botón al fondo */
+    display: flex;
+    flex-direction: column;
 }
 
 .product-name {
-    font-size: 1.2rem;
-    margin: 10px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    color: #333;
 }
 
 .product-price {
-    font-size: 1.1rem;
-    color: #2c3e50;
+    font-size: 1.25rem;
+    color: #3498db;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .product-stock {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #7f8c8d;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Ocupa el espacio disponible */
 }
 
 .product-button {
     display: block;
-    width: 80%;
-    margin: 0 auto 20px;
-    padding: 10px;
+    width: 100%;
+    padding: 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: #3498db;
     color: white;
     font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none; /* Para que funcione bien el <Link> */
     transition: background-color 0.2s;
 }
 

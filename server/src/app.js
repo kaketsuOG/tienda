@@ -22,6 +22,8 @@ const pagoRoutes = require('./routes/pagoRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const categoriaRoutes = require('./routes/categoriaRoutes');
+const authRoutes = require('./routes/authRoutes');
+
 
 app.use('/api', testRoutes); // Le decimos que use esas rutas bajo el prefijo /api
 app.use('/api/productos', productoRoutes);
@@ -31,6 +33,9 @@ app.use('/api/pagos', pagoRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/categorias', categoriaRoutes);
+app.use('/api/auth', authRoutes);
+
+
 
 // Ruta de bienvenida simple
 app.get('/', (req, res) => {

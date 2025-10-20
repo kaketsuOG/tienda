@@ -1,23 +1,27 @@
+// src/components/products/ProductCard.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './ProductCard.css'; // Importaremos los estilos en un momento
+import './ProductCard.css';
 
-// Recibe un 'producto' como prop
 const ProductCard = ({ producto }) => {
-    // Un placeholder en caso de que un producto no tenga imagen
-    const imageUrl = producto.imagen_url || 'https://via.placeholder.com/300x200';
+    const imageUrl = producto.imagen_url || 'https://via.placeholder.com/300';
 
     return (
         <div className="product-card">
-            <img src={imageUrl} alt={producto.nombre} className="product-image" />
+            {/* Nuevo contenedor para la imagen */}
+            <div className="product-image-container">
+                <img src={imageUrl} alt={producto.nombre} className="product-image" />
+            </div>
+
             <div className="product-info">
                 <h3 className="product-name">{producto.nombre}</h3>
                 <p className="product-price">${new Intl.NumberFormat('es-CL').format(producto.precio)}</p>
-                <p className="product-stock">Stock: {producto.stock}</p>
+                <p className="product-stock">Quedan: {producto.stock} unidades</p>
+                
+                <Link to={`/productos/${producto.id}`} className="product-button">
+                    Ver Detalles
+                </Link>
             </div>
-            <Link to={`/productos/${producto.id}`} className="product-button">
-                Ver Detalles
-            </Link>
         </div>
     );
 };
