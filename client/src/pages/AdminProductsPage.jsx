@@ -141,29 +141,39 @@ const AdminProductsPage = () => {
             </div>
             
             {/* ... (código de la tabla sin cambios) ... */}
+            <div className="products-table-wrapper">
             <table className="products-table">
-                {/* ... thead ... */}
-                <tbody>
-                {productos.map(producto => (
-                    <tr key={producto.id}>
-                        <td>
-                            <img 
-                                src={producto.imagen_url || 'https://via.placeholder.com/70'} 
-                                alt={producto.nombre} 
-                                className="product-table-image"
-                            />
-                        </td>
-                        <td>{producto.nombre}</td>
-                        <td>${new Intl.NumberFormat('es-CL').format(producto.precio)}</td>
-                        <td>{producto.stock}</td>
-                        <td>
-                            <button onClick={() => handleEdit(producto)} className="btn-edit">Editar</button>
-                            <button onClick={() => handleDelete(producto.id)} className="btn-delete">Eliminar</button>
-                        </td>
+                <thead>
+                    <tr>
+                        <th style={{ width: '40%' }}>Producto</th>
+                        <th style={{ width: '15%' }}>Precio</th>
+                        <th style={{ width: '15%' }}>Stock</th>
+                        <th style={{ width: '30%' }}>Acciones</th>
                     </tr>
-                ))}
-            </tbody>
+                </thead>
+                <tbody>
+                    {productos.map(producto => (
+                        <tr key={producto.id}>
+                            {/* 👇 AÑADIMOS UNA CELDA EXTRA PARA EL NOMBRE 👇 */}
+                            <td className="product-name-cell">
+                                <img 
+                                    src={producto.imagen_url || 'https://via.placeholder.com/70'} 
+                                    alt={producto.nombre} 
+                                    className="product-table-image"
+                                />
+                                <span>{producto.nombre}</span>
+                            </td>
+                            <td>${new Intl.NumberFormat('es-CL').format(producto.precio)}</td>
+                            <td>{producto.stock}</td>
+                            <td>
+                                <button onClick={() => handleEdit(producto)} className="btn-edit">Editar</button>
+                                <button onClick={() => handleDelete(producto.id)} className="btn-delete">Eliminar</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
             </table>
+        </div>
             
         
 

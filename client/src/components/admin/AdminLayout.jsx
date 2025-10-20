@@ -1,5 +1,6 @@
 import React from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, NavLink } from 'react-router-dom';
+import { FaTachometerAlt, FaBoxOpen, FaTags, FaSignOutAlt } from 'react-icons/fa';
 import './AdminLayout.css';
 
 // Componente para la barra lateral de navegación
@@ -18,13 +19,19 @@ const AdminSidebar = () => {
                 <span>Admin</span>
             </div>
             <nav className="sidebar-nav">
-                <a href="/admin/dashboard">Dashboard</a>
-                <a href="/admin/productos">Productos</a>
-                <a href="/admin/categorias">Categorías</a>
-                {/* Agrega aquí futuros enlaces como "Reservas", "Clientes", etc. */}
+                {/* Usamos NavLink para que el estilo activo se aplique automáticamente */}
+                <NavLink to="/admin/dashboard">
+                    <FaTachometerAlt /> <span>Dashboard</span>
+                </NavLink>
+                <NavLink to="/admin/productos">
+                    <FaBoxOpen /> <span>Productos</span>
+                </NavLink>
+                <NavLink to="/admin/categorias">
+                    <FaTags /> <span>Categorías</span>
+                </NavLink>
             </nav>
             <button onClick={handleLogout} className="sidebar-logout">
-                Cerrar Sesión
+                <FaSignOutAlt /> <span>Cerrar Sesión</span>
             </button>
         </aside>
     );

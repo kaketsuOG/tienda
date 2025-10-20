@@ -51,4 +51,29 @@ const loginAdmin = async (req, res) => {
     }
 };
 
-module.exports = { registerAdmin, loginAdmin };
+const getDashboardStats = async (req, res) => {
+    try {
+        // Ejecutamos varias consultas de conteo en paralelo
+        const [productCount, categoryCount, clientCount, reservationCount] = await Promise.all([
+            pool.query('SELECT COUNT(*) FROM productos'),
+            pool.query('SELECT COUNT(*) FROM categorias'),
+            pool.query('SELECT COUNT(*) FROM clientes'),
+            pool.query('SELECT COUNT(*) FROM reservas')
+        ]);
+
+        res.status(200).json({
+            productos: parseInt(productCount.rows[0].count, 10),
+            categorias: parseInt(categoryCount.rows[0].count, 10),
+            clientes: parseInt(clientCount.rows[0].count, 10),
+            reservas: parseInt(reservationCount.rows[0].count, 10)
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener estadísticas', error: error.message });
+    }
+};
+
+module.exports = { 
+    registerAdmin, 
+    loginAdmin, 
+    getDashboardStats 
+};
