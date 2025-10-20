@@ -101,16 +101,25 @@ const AdminProductsPage = () => {
             <table className="products-table">
                 {/* ... thead ... */}
                 <tbody>
-                    {productos.map(producto => (
-                        <tr key={producto.id}>
-                            {/* ... celdas de imagen, nombre, etc. ... */}
-                            <td>
-                                <button onClick={() => handleEdit(producto)} className="btn-edit">Editar</button>
-                                <button onClick={() => handleDelete(producto.id)} className="btn-delete">Eliminar</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
+                {productos.map(producto => (
+                    <tr key={producto.id}>
+                        <td>
+                            <img 
+                                src={producto.imagen_url || 'https://via.placeholder.com/70'} 
+                                alt={producto.nombre} 
+                                className="product-table-image"
+                            />
+                        </td>
+                        <td>{producto.nombre}</td>
+                        <td>${new Intl.NumberFormat('es-CL').format(producto.precio)}</td>
+                        <td>{producto.stock}</td>
+                        <td>
+                            <button onClick={() => handleEdit(producto)} className="btn-edit">Editar</button>
+                            <button onClick={() => handleDelete(producto.id)} className="btn-delete">Eliminar</button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
             </table>
             
             <Link to="/admin/dashboard" className="back-link">← Volver al Dashboard</Link>
