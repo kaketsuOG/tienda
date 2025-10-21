@@ -1,74 +1,108 @@
 .admin-layout {
     display: flex;
     min-height: 100vh;
-    background-color: #f4f7f6;
 }
 
 .admin-sidebar {
-    width: 250px;
-    background-color: #2c3e50;
-    color: white;
+    width: 260px;
+    /* Color de fondo oscuro de la plantilla */
+    background-color: #2F353A; 
+    color: #aeb1b5; /* Color de texto gris claro */
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    z-index: 100;
 }
 
 .sidebar-header {
+    padding: 22px 20px;
     text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #34495e;
+    /* Color de cabecera rosado/rojo de la plantilla */
+    background-color: #E74C3C; 
+    color: white;
 }
 
 .sidebar-header h3 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 
 .sidebar-nav {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 30px;
-    flex-grow: 1; /* Empuja el botón de logout hacia abajo */
+    flex-grow: 1;
+    padding: 15px 0;
+}
+
+.nav-section-title {
+    padding: 10px 25px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #7f8c8d; /* Color de título de sección atenuado */
+    margin-top: 15px;
 }
 
 .sidebar-nav a {
-    color: #bdc3c7;
+    color: #aeb1b5;
     text-decoration: none;
-    padding: 15px 20px;
-    border-radius: 5px;
-    transition: background-color 0.2s, color 0.2s;
-    display: flex; /* Para alinear el icono con el texto */
+    padding: 15px 25px;
+    display: flex;
     align-items: center;
-    gap: 15px; /* Espacio entre el icono y el texto */
+    gap: 15px;
+    position: relative; /* Necesario para la barra activa */
+    transition: background-color 0.2s, color 0.2s;
 }
 
-.sidebar-nav a:hover, .sidebar-nav a.active {
-    background-color: #34495e;
-    color: white;
+.sidebar-nav a:hover {
+    background-color: #3b4148;
+    color: #fff;
 }
 
+/* Estilo para el enlace activo, clave en la plantilla */
 .sidebar-nav a.active {
-    background-color: #3498db;
+    background-color: #282c30;
     color: white;
+    font-weight: 500;
+}
+
+/* La barra de color vertical para el ítem activo */
+.sidebar-nav a.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #E74C3C; /* Color de acento rosado/rojo */
 }
 
 .sidebar-logout {
-    background-color: #e74c3c;
-    color: white;
+    background-color: #282c30;
+    color: #aeb1b5;
     border: none;
-    padding: 15px;
-    border-radius: 5px;
+    padding: 20px;
     cursor: pointer;
-    text-align: center;
+    text-align: left;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 15px;
+    font-size: 1rem;
+    border-top: 1px solid #3b4148;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-logout:hover {
+    background-color: #E74C3C;
+    color: white;
 }
 
 .admin-main-content {
     flex-grow: 1;
+    /* Color de fondo gris claro de la plantilla */
+    background-color: #EAEDF1; 
     padding: 30px;
-    overflow-y: auto; /* Permite scroll si el contenido es largo */
+    overflow-y: auto;
 }

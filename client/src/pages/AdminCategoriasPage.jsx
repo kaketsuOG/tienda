@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import apiClient from '../services/apiClient';
-import './AdminCategoriasPage.css'; // Crearemos este archivo de estilos
+import './AdminCategoriasPage.css'; // Usaremos el CSS actualizado
 
 const AdminCategoriasPage = () => {
     const [categorias, setCategorias] = useState([]);
@@ -9,6 +9,7 @@ const AdminCategoriasPage = () => {
     const [error, setError] = useState(null);
 
     const fetchCategorias = async () => {
+        // ... (la lógica de esta función no cambia)
         try {
             const response = await apiClient.get('/categorias');
             setCategorias(response.data);
@@ -26,6 +27,7 @@ const AdminCategoriasPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!nuevaCategoria.trim()) return;
+        setError(null); // Limpiamos errores previos
 
         const token = localStorage.getItem('adminToken');
         const config = {
@@ -34,8 +36,8 @@ const AdminCategoriasPage = () => {
 
         try {
             await apiClient.post('/categorias', { nombre: nuevaCategoria }, config);
-            setNuevaCategoria(''); // Limpiamos el input
-            fetchCategorias();     // Recargamos la lista de categorías
+            setNuevaCategoria('');
+            fetchCategorias();
         } catch (err) {
             setError('No se pudo crear la categoría. Es posible que ya exista.');
         }
@@ -45,27 +47,12 @@ const AdminCategoriasPage = () => {
 
     return (
         <div className="admin-categorias-container">
-            <div className="categorias-header">
-                <h1>Gestionar Categorías</h1>
-            </div>
-
-            {error && <p className="error-message">{error}</p>}
-
-            <div className="categorias-content">
-                <div className="categorias-list">
-                    <h3>Categorías Existentes</h3>
-                    <ul>
-                        {categorias.map(cat => (
-                            <li key={cat.id}>
-                                {cat.nombre}
-                                {/* Aquí irían los botones de editar/eliminar en el futuro */}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <div className="categorias-form">
+            <h1>Gestionar Categorías</h1>
+            
+            <div className="categorias-widget">
+                <form onSubmit={handleSubmit} className="widget-header-form">
                     <h3>Agregar Nueva Categoría</h3>
-                    <form onSubmit={handleSubmit}>
+                    <div className="form-row">
                         <input
                             type="text"
                             value={nuevaCategoria}
@@ -73,8 +60,20 @@ const AdminCategoriasPage = () => {
                             placeholder="Nombre de la categoría"
                             required
                         />
-                        <button type="submit">Agregar</button>
-                    </form>
+                        <button type="submit" className="btn-add">Agregar</button>
+                    </div>
+                </form>
+
+                <div className="widget-content">
+                    {error && <p className="error-message">{error}</p>}
+                    <ul className="categorias-list">
+                        {categorias.map(cat => (
+                            <li key={cat.id}>
+                                <span>{cat.nombre}</span>
+                                {/* En el futuro, podríamos añadir botones de editar/eliminar aquí */}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </div>

@@ -1,15 +1,18 @@
-// src/pages/AdminDashboardPage.jsx
 import React, { useState, useEffect } from 'react';
 import apiClient from '../services/apiClient';
 import { FaBoxOpen, FaTags, FaUsers, FaShoppingCart } from 'react-icons/fa';
+import ReservasChart from '../components/admin/charts/ReservasChart';
 import './AdminDashboardPage.css';
 
-const StatCard = ({ icon, title, value, color }) => (
-    <div className="stat-card" style={{ borderLeftColor: color }}>
-        <div className="stat-card-icon">{icon}</div>
-        <div className="stat-card-info">
+// Nuevo componente para las tarjetas de estadísticas, basado en la plantilla
+const StatBox = ({ icon, title, value, color }) => (
+    <div className="stat-box" style={{ backgroundColor: color }}>
+        <div className="stat-box-icon">
+            {icon}
+        </div>
+        <div className="stat-box-content">
+            <h3>{value}</h3>
             <p>{title}</p>
-            <span>{value}</span>
         </div>
     </div>
 );
@@ -38,12 +41,28 @@ const AdminDashboardPage = () => {
 
     return (
         <div className="dashboard-container">
-            <h1>Dashboard</h1>
+            {/* Cabecera del Dashboard, como en la plantilla */}
+            <div className="dashboard-header">
+                <h1>Dashboard</h1>
+                <p>Bienvenido a tu panel de control.</p>
+            </div>
+
             <div className="stats-grid">
-                <StatCard icon={<FaBoxOpen />} title="Total Productos" value={stats?.productos ?? 0} color="#3498db" />
-                <StatCard icon={<FaTags />} title="Total Categorías" value={stats?.categorias ?? 0} color="#2ecc71" />
-                <StatCard icon={<FaUsers />} title="Total Clientes" value={stats?.clientes ?? 0} color="#e67e22" />
-                <StatCard icon={<FaShoppingCart />} title="Total Reservas" value={stats?.reservas ?? 0} color="#9b59b6" />
+                {/* Usamos los nuevos StatBox con los colores de la plantilla */}
+                <StatBox icon={<FaBoxOpen />} title="Total Productos" value={stats?.productos ?? 0} color="#00c0ef" />
+                <StatBox icon={<FaTags />} title="Total Categorías" value={stats?.categorias ?? 0} color="#00a65a" />
+                <StatBox icon={<FaUsers />} title="Total Clientes" value={stats?.clientes ?? 0} color="#3b82f6" />
+                <StatBox icon={<FaShoppingCart />} title="Total Reservas" value={stats?.reservas ?? 0} color="#f56954" />
+            </div>
+
+            {/* Aquí es donde, en futuros pasos, agregaremos los gráficos */}
+            <div className="chart-widget">
+                <div className="widget-header">
+                    <h2>Reservas (Últimos 7 días)</h2>
+                </div>
+                <div className="widget-content">
+                    <ReservasChart />
+                </div>
             </div>
         </div>
     );

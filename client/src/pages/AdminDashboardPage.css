@@ -1,39 +1,83 @@
-.dashboard-container h1 {
+
+.dashboard-header {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
     margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.dashboard-header h1 {
+    margin: 0 0 5px 0;
+    color: #E74C3C; /* Color de acento de la plantilla */
+}
+
+.dashboard-header p {
+    margin: 0;
+    color: #777;
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 25px;
 }
 
-.stat-card {
-    background-color: #fff;
+.stat-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    display: flex;
-    align-items: center;
-    border-left: 5px solid #3498db;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
 
-.stat-card-icon {
-    font-size: 2.5rem;
-    margin-right: 20px;
-    color: #34495e;
-    opacity: 0.7;
+.stat-box:hover {
+    transform: translateY(-5px);
 }
 
-.stat-card-info p {
+.stat-box-icon {
+    font-size: 3.8rem; /* Icono grande */
+    opacity: 0.8;
+}
+
+.stat-box-content {
+    text-align: right;
+}
+
+.stat-box-content h3 {
+    font-size: 2.8rem; /* Número grande */
+    font-weight: 600;
+    margin: 0 0 5px 0;
+}
+
+.stat-box-content p {
     margin: 0;
-    color: #7f8c8d;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
-.stat-card-info span {
-    font-size: 2rem;
-    font-weight: bold;
+.chart-widget {
+    margin-top: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.widget-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #EAEDF1;
+}
+
+.widget-header h2 {
+    margin: 0;
     color: #2c3e50;
+    font-size: 1.3rem;
+}
+
+.widget-content {
+    padding: 25px;
 }

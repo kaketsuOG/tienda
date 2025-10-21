@@ -72,8 +72,32 @@ const getDashboardStats = async (req, res) => {
     }
 };
 
+const getReservasChartData = async (req, res) => {
+    try {
+        // Esta consulta cuenta las reservas por día de los últimos 7 días
+        const result = await pool.query(`
+            SELECT 
+                DATE(fecha_reserva) AS dia, 
+                COUNT(*) AS cantidad
+            FROM 
+                reservas
+            WHERE 
+                fecha_reserva >= CURRENT_DATE - INTERVAL '7 days'
+            GROUP BY 
+                dia
+            ORDER BY 
+                dia ASC;
+        `);
+        
+        res.status(200).json(result.rows);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener datos del gráfico', error: error.message });
+    }
+};
+
 module.exports = { 
     registerAdmin, 
     loginAdmin, 
-    getDashboardStats 
+    getDashboardStats,
+    getReservasChartData 
 };

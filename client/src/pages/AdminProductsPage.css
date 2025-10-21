@@ -1,28 +1,33 @@
-/* src/pages/AdminProductsPage.css */
+
 .admin-products-container {
     max-width: 1200px;
-    margin: 0 auto; /* Centramos el contenedor principal */
+    margin: 0 auto;
 }
 
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.admin-header h1 {
-    margin: 0;
-    color: #2c3e50;
-}
-
-.products-table-wrapper {
-    overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
+/* El nuevo contenedor blanco para la tabla, al estilo de la plantilla */
+.products-table-widget {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* Importante para los bordes redondeados de la tabla */
+}
+
+.widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #EAEDF1; /* Borde sutil como en la plantilla */
+}
+
+.widget-header h2 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.3rem;
+}
+
+.widget-content {
+    overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
 }
 
 .products-table {
@@ -31,21 +36,26 @@
 }
 
 .products-table th, .products-table td {
-    padding: 18px 20px;
+    padding: 16px 25px;
     text-align: left;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #EAEDF1;
+    vertical-align: middle;
 }
 
 .products-table thead th {
-    background-color: #f9fafb;
+    background-color: #fcfcfc;
     color: #555;
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+}
+
+.products-table tbody tr:last-child td {
+    border-bottom: none; /* Quitamos el borde de la última fila */
 }
 
 .products-table tbody tr:hover {
-    background-color: #f7f7f7;
+    background-color: #f9f9f9;
 }
 
 .product-table-image {
@@ -53,15 +63,17 @@
     height: 60px;
     object-fit: cover;
     border-radius: 8px;
-    vertical-align: middle;
     margin-right: 15px;
 }
 
 .product-name-cell {
     display: flex;
     align-items: center;
+    font-weight: 500;
+    color: #333;
 }
 
+/* Botones */
 .btn-add, .btn-edit, .btn-delete {
     padding: 8px 16px;
     border: none;
@@ -73,19 +85,11 @@
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.btn-add { background-color: #27ae60; }
+.btn-add { background-color: #00a65a; } /* Color de la plantilla */
 .btn-edit { background-color: #3498db; margin-right: 8px; }
 .btn-delete { background-color: #e74c3c; }
 
 .btn-add:hover, .btn-edit:hover, .btn-delete:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.back-link {
-    display: inline-block;
-    margin-top: 30px;
-    text-decoration: none;
-    color: #3498db;
-    font-weight: 500;
 }

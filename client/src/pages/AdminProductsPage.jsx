@@ -1,6 +1,4 @@
-// src/pages/AdminProductsPage.jsx
 import React, { useState, useEffect } from 'react';
-
 import apiClient from '../services/apiClient';
 import ProductFormModal from '../components/admin/ProductFormModal'; // Importamos el modal
 import './AdminProductsPage.css';
@@ -135,13 +133,16 @@ const AdminProductsPage = () => {
             {/* Si hay un error, lo mostramos */}
             {error && <p className="error-message">{error}</p>}
             
-            <div className="admin-header">
-                <h1>Gestionar Productos</h1>
-                <button onClick={handleAddNew} className="btn-add">Agregar Nuevo Producto</button>
-            </div>
-            
-            {/* ... (código de la tabla sin cambios) ... */}
-            <div className="products-table-wrapper">
+            <div className="products-table-widget">
+                
+                {/* Cabecera del widget */}
+                <div className="widget-header">
+                    <h2>Gestionar Productos</h2>
+                    <button onClick={handleAddNew} className="btn-add">Agregar Nuevo Producto</button>
+                </div>
+                
+                {/* Contenido del widget (la tabla) */}
+                <div className="widget-content">
             <table className="products-table">
                 <thead>
                     <tr>
@@ -154,7 +155,6 @@ const AdminProductsPage = () => {
                 <tbody>
                     {productos.map(producto => (
                         <tr key={producto.id}>
-                            {/* 👇 AÑADIMOS UNA CELDA EXTRA PARA EL NOMBRE 👇 */}
                             <td className="product-name-cell">
                                 <img 
                                     src={producto.imagen_url || 'https://via.placeholder.com/70'} 
@@ -173,6 +173,7 @@ const AdminProductsPage = () => {
                     ))}
                 </tbody>
             </table>
+            </div>
         </div>
             
         

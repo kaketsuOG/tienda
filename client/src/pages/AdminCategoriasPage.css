@@ -1,61 +1,79 @@
-.admin-categorias-container {
-  max-width: 900px;
-  margin: 20px auto;
+.admin-categorias-container h1 {
+    margin-bottom: 30px;
+    color: #2c3e50;
 }
 
-.categorias-header {
-  margin-bottom: 30px;
+.categorias-widget {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.widget-header-form {
+    padding: 25px;
+    background-color: #fcfcfc;
+    border-bottom: 1px solid #EAEDF1;
+}
+
+.widget-header-form h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.form-row .btn-add {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background-color: #00a65a;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.widget-content {
+    padding: 25px;
 }
 
 .error-message {
-  color: #e74c3c;
-  background-color: #fdd;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 20px;
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
 }
 
-.categorias-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.categorias-list ul {
-  list-style-type: none;
-  padding: 0;
+.categorias-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .categorias-list li {
-  background-color: #f2f2f2;
-  padding: 12px;
-  border-radius: 5px;
-  margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #f0f0f0;
 }
 
-.categorias-form form {
-  display: flex;
-  flex-direction: column;
-}
-
-.categorias-form input {
-  padding: 12px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 15px;
-}
-
-.categorias-form button {
-  padding: 12px;
-  font-size: 1rem;
-  background-color: #27ae60;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.categorias-list li span {
+    font-weight: 500;
 }

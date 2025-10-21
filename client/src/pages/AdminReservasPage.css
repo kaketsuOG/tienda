@@ -1,0 +1,80 @@
+
+.reservas-table-widget {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #EAEDF1;
+}
+
+.widget-header h2 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.3rem;
+}
+
+.widget-content {
+    overflow-x: auto;
+}
+
+.reservas-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reservas-table th, .reservas-table td {
+    padding: 16px 25px;
+    text-align: left;
+    border-bottom: 1px solid #EAEDF1;
+    vertical-align: middle;
+}
+
+.reservas-table thead th {
+    background-color: #fcfcfc;
+    color: #555;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.reservas-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.reservas-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Insignias de Estado */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+}
+.status-pendiente {
+    background-color: #f39c12; /* Naranja */
+}
+.status-confirmada {
+    background-color: #27ae60; /* Verde */
+}
+.status-cancelada {
+    background-color: #e74c3c; /* Rojo */
+}
+
+.status-entregado {
+    background-color: #9b59b6; /* Morado */
+}
+
+.reservas-table tbody tr.clickable-row:hover {
+    background-color: #f0f4f8; /* Un color de hover más notorio */
+    cursor: pointer;
+}

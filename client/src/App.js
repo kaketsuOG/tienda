@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/common/Navbar';
+import Footer from './components/common/Footer';
 import ProductosPage from './pages/ProductosPage';
 import ProductoDetailPage from './pages/ProductoDetailPage';
 import ReservaPage from './pages/ReservaPage';
@@ -14,6 +15,9 @@ import AdminProductsPage from './pages/AdminProductsPage';
 import AdminCategoriasPage from './pages/AdminCategoriasPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import AdminReservasPage from './pages/AdminReservasPage';
+import AdminReservaDetailPage from './pages/AdminReservaDetailPage';
+import AdminClientesPage from './pages/AdminClientesPage';
 import './App.css';
 
 function App() {
@@ -34,6 +38,9 @@ function App() {
                 <Route path="dashboard" element={<AdminDashboardPage />} />
                 <Route path="productos" element={<AdminProductsPage />} />
                 <Route path="categorias" element={<AdminCategoriasPage />} />
+                <Route path="reservas" element={<AdminReservasPage />} />
+                <Route path="reservas/:id" element={<AdminReservaDetailPage />} />
+                <Route path="clientes" element={<AdminClientesPage />} />
                 {/* Agrega aquí futuras rutas como <Route path="reservas" ... /> */}
             </Route>
         </Route>
@@ -56,6 +63,7 @@ const PublicLayout = () => (
         <Route path="/registro" element={<RegisterPage />} />
       </Routes>
     </main>
+    <Footer />
   </>
 );
 

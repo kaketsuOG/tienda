@@ -8,13 +8,14 @@ const {
     updateCliente,
     deleteCliente
 } = require('../controllers/clienteController');
+const { protect } = require('../middlewares/authMiddleware');
 
 // Rutas para /api/clientes
 
-router.get('/', getAllClientes);
-router.get('/:id', getClienteById);
-router.post('/', createCliente);
-router.put('/:id', updateCliente);
-router.delete('/:id', deleteCliente);
+router.get('/', protect, getAllClientes);
+router.get('/:id', protect, getClienteById);
+router.post('/', protect, createCliente);
+router.put('/:id', protect, updateCliente);
+router.delete('/:id', protect, deleteCliente);
 
 module.exports = router;

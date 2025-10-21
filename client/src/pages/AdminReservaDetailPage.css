@@ -1,0 +1,94 @@
+.reserva-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #3498db;
+    font-weight: 500;
+}
+
+.reserva-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.reserva-info-widget,
+.reserva-items-widget {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+}
+
+.reserva-info-widget h3,
+.reserva-items-widget h3 {
+    margin: 0 0 20px 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #EAEDF1;
+}
+
+.reserva-info-widget hr {
+    border: none;
+    border-top: 1px solid #EAEDF1;
+    margin: 20px 0;
+}
+
+.status-form {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+.status-form select {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+.btn-save {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-weight: 500;
+    background-color: #27ae60;
+}
+
+/* Lista de items */
+.items-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.item-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.item-card:last-child {
+    border-bottom: none;
+}
+.item-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.item-info {
+    flex-grow: 1;
+}
+.item-info .item-name {
+    display: block;
+    font-weight: 600;
+}
+.item-total {
+    font-weight: 600;
+}
