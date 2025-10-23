@@ -1,24 +1,43 @@
 
-.product-card {
+.product-card-jumbo {
     background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px; /* Bordes más suaves */
+    border: 1px solid #e9e9e9; /* Borde más suave */
+    border-radius: 8px;
     overflow: hidden;
-    text-align: left; /* Alineamos el texto a la izquierda */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
+    height: 100%; /* Asegura que todas las tarjetas tengan la misma altura si están en una cuadrícula */
+    position: relative;
+    transition: box-shadow 0.2s ease-in-out;
 }
 
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+.product-card-jumbo:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
 
-.product-image-container { /* Nuevo contenedor para la imagen */
+/* Etiqueta de Oferta estilo Jumbo */
+.offer-tag-jumbo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ffd814; /* Amarillo Jumbo */
+    color: #111; /* Texto oscuro */
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 2;
+    text-transform: uppercase;
+}
+
+.product-image-link {
+    text-decoration: none;
+    display: block; /* Ocupa el espacio */
+}
+
+.product-image-container {
     width: 100%;
-    padding-top: 100%; /* Esto crea un ratio de 1:1 (cuadrado) */
+    padding-top: 100%; /* Ratio 1:1 */
     position: relative;
     overflow: hidden;
 }
@@ -29,58 +48,88 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
+    object-fit: contain; /* Usamos 'contain' para que se vea el producto completo */
+    padding: 10px; /* Un pequeño margen interno */
+    box-sizing: border-box; /* Incluye el padding en el tamaño */
 }
 
-.product-card:hover .product-image {
-    transform: scale(1.05); /* Efecto de zoom sutil */
-}
-
-.product-info {
-    padding: 20px;
-    flex-grow: 1; /* Empuja el botón al fondo */
+.product-info-jumbo {
+    padding: 15px;
     display: flex;
     flex-direction: column;
+    flex-grow: 1; /* Ocupa el espacio restante */
+    border-top: 1px solid #e9e9e9;
+}
+
+.product-brand-jumbo {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.product-name-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .product-name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 0 0 5px 0;
+    font-size: 0.95rem; /* Tamaño de fuente Jumbo */
+    font-weight: 400; /* Fuente más ligera */
+    margin: 0 0 10px 0;
     color: #333;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 38px; /* Altura aprox para 2 líneas */
+    line-height: 1.3;
 }
 
-.product-price {
-    font-size: 1.25rem;
-    color: #3498db;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.product-stock {
-    font-size: 0.85rem;
-    color: #7f8c8d;
+/* Sección de Precios */
+.price-section-jumbo {
     margin-bottom: 15px;
-    flex-grow: 1; /* Ocupa el espacio disponible */
 }
 
-.product-button {
+.old-price-jumbo {
+    font-size: 0.85rem;
+    color: #666;
+    text-decoration: line-through;
+    display: block; /* Lo ponemos arriba */
+    margin-bottom: 2px;
+}
+
+.current-price-jumbo {
+    font-size: 1.5rem; /* Precio grande */
+    font-weight: bold;
+    color: #333; /* Texto negro */
+    display: block; /* En su propia línea */
+}
+
+.unit-price-jumbo {
+    font-size: 0.75rem;
+    color: #666;
+    display: block;
+}
+
+/* Botón de Agregar estilo Jumbo */
+.product-button-add-jumbo {
     display: block;
     width: 100%;
     padding: 12px;
     border: none;
-    border-radius: 8px;
-    background-color: #3498db;
+    border-radius: 6px;
+    background-color: #007d40; /* Verde Jumbo */
     color: white;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: bold;
     cursor: pointer;
     text-align: center;
-    text-decoration: none; /* Para que funcione bien el <Link> */
+    margin-top: auto; /* Empuja el botón al fondo */
     transition: background-color 0.2s;
 }
 
-.product-button:hover {
-    background-color: #2980b9;
+.product-button-add-jumbo:hover {
+    background-color: #005a2d; /* Verde más oscuro */
 }

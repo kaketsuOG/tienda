@@ -1,13 +1,15 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode'; // Necesitarás instalar esta librería
+import { jwtDecode } from 'jwt-decode';
 
-// 1. Crear el contexto
 export const AuthContext = createContext();
 
-// 2. Crear el proveedor del contexto
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(localStorage.getItem('userToken'));
+    
+    // --- NUEVO ESTADO PARA EL MODAL ---
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalView, setModalView] = useState('login'); // 'login' o 'register'
 
     useEffect(() => {
         if (token) {
@@ -24,6 +26,7 @@ export const AuthProvider = ({ children }) => {
     const login = (newToken) => {
         localStorage.setItem('userToken', newToken);
         setToken(newToken);
+        closeAuthModal(); // Cierra el modal al iniciar sesión
     };
 
     const logout = () => {
@@ -32,11 +35,31 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     };
 
+    // --- NUEVAS FUNCIONES PARA CONTROLAR EL MODAL ---
+    const openAuthModal = (view = 'login') => {
+        setModalView(view);
+        setIsModalOpen(true);
+    };
+
+    const closeAuthModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const switchToRegister = () => setModalView('register');
+    const switchToLogin = () => setModalView('login');
+
     const value = {
         user,
         token,
         login,
-        logout
+        logout,
+        // Exportamos las nuevas funciones y estados
+        isModalOpen,
+        modalView,
+        openAuthModal,
+        closeAuthModal,
+        switchToRegister,
+        switchToLogin
     };
 
     return (

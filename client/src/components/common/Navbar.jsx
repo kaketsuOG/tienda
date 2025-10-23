@@ -1,35 +1,57 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 import { AuthContext } from '../../context/AuthContext';
+// Usaremos iconos más específicos
+import { FaSearch, FaRegUserCircle, FaShoppingCart } from 'react-icons/fa'; 
 import './Navbar.css';
 
 const Navbar = () => {
     const { cartItems } = useContext(CartContext);
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout, openAuthModal } = useContext(AuthContext);
 
-    // Calculamos el número total de ítems en el carrito (sumando las cantidades)
     const totalItems = cartItems.reduce((total, item) => total + item.cantidad, 0);
 
     return (
-        <nav className="navbar">
-            <Link to="/" className="nav-brand">MiTienda</Link>
-            <div className="nav-links">
-                {user ? (
-                    <>
-                        <span className="nav-user">Hola, {user.nombre || user.email}</span>
-                        <button onClick={logout} className="nav-button">Cerrar Sesión</button>
-                    </>
-                ) : (
-                    <>
-                        <NavLink to="/login" className="nav-button">Iniciar Sesión</NavLink>
-                        <NavLink to="/registro" className="nav-button-primary">Registrarse</NavLink>
-                    </>
-                )}
-                <Link to="/reserva" className="nav-cart-link">
-                    🛒
-                    {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+        <nav className="navbar-redesign">
+            <div className="nav-content">
+                <Link to="/" className="nav-brand">
+                    MiTienda
                 </Link>
+
+                <div className="nav-search">
+                    <input type="text" placeholder="¿Qué estás buscando?" />
+                    <button className="search-button">
+                        <FaSearch />
+                    </button>
+                </div>
+
+                <div className="nav-actions">
+                    {/* Botón de Login/Usuario con nuevo icono */}
+                    <div className="nav-user-action">
+                        <FaRegUserCircle className="user-icon" /> 
+                        {user ? (
+                            <div className="user-info">
+                                <span>Hola, {user.nombre || user.email.split('@')[0]}</span>
+                                <button onClick={logout} className="logout-link">Cerrar Sesión</button>
+                            </div>
+                        ) : (
+                            <div className="user-info">
+                                <span>Hola, inicia sesión</span>
+                                {/* Usamos un div clickeable en lugar de botón para mejor estilo */}
+                                <div onClick={() => openAuthModal('login')} className="login-link"> 
+                                    Ingresa / Regístrate
+                                </div>
+                            </div>
+                        )}
+                        {/* Podríamos añadir un pequeño dropdown aquí en el futuro */}
+                    </div>
+
+                    <Link to="/reserva" className="nav-cart-link">
+                        <FaShoppingCart className="cart-icon" />
+                        {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+                    </Link>
+                </div>
             </div>
         </nav>
     );

@@ -1,0 +1,98 @@
+.auth-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.auth-modal-container {
+    background: #fff;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+    padding: 30px 40px;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #999;
+    cursor: pointer;
+}
+.auth-modal-content h3 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+.auth-modal-content p {
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
+}
+.google-btn {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.form-divider {
+    display: block;
+    text-align: center;
+    color: #aaa;
+    margin: 20px 0;
+}
+.auth-modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.auth-modal-content input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.auth-switch {
+    text-align: center;
+    margin-top: 25px;
+}
+.auth-switch span {
+    color: #3498db;
+    font-weight: bold;
+    cursor: pointer;
+}
+.error-message {
+    color: #e74c3c;
+    text-align: center;
+    margin: 0;
+}

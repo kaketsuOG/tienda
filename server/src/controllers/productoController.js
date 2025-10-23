@@ -62,7 +62,7 @@ const getProductoById = async (req, res) => {
 // --- CREAR UN NUEVO PRODUCTO ---
 const createProducto = async (req, res) => {
     // Usamos los nombres en español de tu tabla
-    const { nombre, descripcion, precio, stock, imagen_url, categoria_id } = req.body;
+    const { nombre, descripcion, precio, stock, imagen_url, categoria_id, precio_oferta } = req.body;
 
     if (!nombre || precio === undefined || stock === undefined) {
         return res.status(400).json({ message: 'Nombre, precio y stock son campos requeridos.' });
@@ -70,11 +70,11 @@ const createProducto = async (req, res) => {
 
     try {
         const query = `
-            INSERT INTO productos (nombre, descripcion, precio, stock, imagen_url, categoria_id) 
-            VALUES ($1, $2, $3, $4, $5, $6) 
+            INSERT INTO productos (nombre, descripcion, precio, stock, imagen_url, categoria_id, precio_oferta) 
+            VALUES ($1, $2, $3, $4, $5, $6, $7) 
             RETURNING *
         `;
-        const values = [nombre, descripcion, precio, stock, imagen_url, categoria_id];
+        const values = [nombre, descripcion, precio, stock, imagen_url, categoria_id, precio_oferta || null];
         
         const result = await pool.query(query, values);
         res.status(201).json(result.rows[0]);
@@ -86,7 +86,7 @@ const createProducto = async (req, res) => {
 // --- ACTUALIZAR UN PRODUCTO ---
 const updateProducto = async (req, res) => {
     const { id } = req.params;
-    const { nombre, descripcion, precio, stock, imagen_url, categoria_id } = req.body;
+    const { nombre, descripcion, precio, stock, imagen_url, categoria_id, precio_oferta } = req.body;
 
     if (!nombre || precio === undefined || stock === undefined) {
         return res.status(400).json({ message: 'Nombre, precio y stock son campos requeridos.' });
@@ -95,11 +95,11 @@ const updateProducto = async (req, res) => {
     try {
         const query = `
             UPDATE productos 
-            SET nombre = $1, descripcion = $2, precio = $3, stock = $4, imagen_url = $5, categoria_id = $6
-            WHERE id = $7
+            SET nombre = $1, descripcion = $2, precio = $3, stock = $4, imagen_url = $5, categoria_id = $6, precio_oferta = $7
+            WHERE id = $8
             RETURNING *
         `;
-        const values = [nombre, descripcion, precio, stock, imagen_url, categoria_id, id];
+        const values = [nombre, descripcion, precio, stock, imagen_url, categoria_id, precio_oferta || null, id];
 
         const result = await pool.query(query, values);
         if (result.rows.length === 0) {

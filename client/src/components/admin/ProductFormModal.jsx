@@ -9,7 +9,8 @@ const ProductFormModal = ({ onClose, onSave, productToEdit }) => {
         precio: '',
         stock: '',
         imagen_url: '',
-        categoria_id: ''
+        categoria_id: '',
+        precio_oferta: ''
     });
     // eslint-disable-next-line no-unused-vars
     const [imageFile, setImageFile] = useState(null);
@@ -58,7 +59,10 @@ const ProductFormModal = ({ onClose, onSave, productToEdit }) => {
                 <form onSubmit={handleSubmit}>
                     <input name="nombre" value={producto.nombre} onChange={handleChange} placeholder="Nombre del producto" required />
                     <textarea name="descripcion" value={producto.descripcion} onChange={handleChange} placeholder="Descripción"></textarea>
-                    <input type="number" name="precio" value={producto.precio} onChange={handleChange} placeholder="Precio" required />
+                    <input type="number" name="precio" value={producto.precio} onChange={handleChange} placeholder="Precio Normal" required />
+                            {/* --- NUEVO CAMPO DE OFERTA --- */}
+                    <input type="number" name="precio_oferta" value={producto.precio_oferta || ''} onChange={handleChange} placeholder="Precio de Oferta (opcional)" />
+                    {/* ... (select de categoría, input de imagen, botones) ... */}                    
                     <input type="number" name="stock" value={producto.stock} onChange={handleChange} placeholder="Stock" required />
                     
                     <select name="categoria_id" value={producto.categoria_id} onChange={handleChange} required>

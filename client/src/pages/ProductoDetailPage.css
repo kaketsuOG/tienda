@@ -1,79 +1,172 @@
-.product-detail-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 20px;
-}
-.product-detail-card {
-    display: flex;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-.product-detail-image-container {
-    flex: 1;
-}
-.product-detail-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.product-detail-info {
-    flex: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-}
-.product-detail-name {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-.product-detail-description {
-    font-size: 1.1rem;
-    color: #555;
-    line-height: 1.6;
-    flex-grow: 1;
-}
-.product-detail-stock {
-    font-size: 1rem;
-    color: #777;
-    margin-bottom: 10px;
-}
-.product-detail-price {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 30px;
-}
-.add-to-cart-button {
-    padding: 15px;
-    font-size: 1.2rem;
-    background-color: #2ecc71;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-.add-to-cart-button:hover {
-    background-color: #27ae60;
-}
-.back-link {
-    margin-top: 20px;
-    text-align: center;
-    color: #3498db;
-    text-decoration: none;
-}
 
-.related-products-section {
+.product-detail-page {
     max-width: 1200px;
-    margin: 60px auto;
+    margin: 30px auto;
     padding: 0 20px;
 }
 
+/* --- Sección Superior: Galería y Compra --- */
+.product-main-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+/* Columna Izquierda: Galería */
+.product-gallery {
+    display: flex;
+    flex-direction: column;
+}
+.main-image-container {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    aspect-ratio: 1 / 1; /* Mantiene la proporción cuadrada */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+.thumbnail-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.thumbnail-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid #eee;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s, border-color 0.2s;
+}
+.thumbnail-image:hover {
+    opacity: 1;
+}
+.thumbnail-image.active {
+    opacity: 1;
+    border-color: #3498db; /* Borde azul para la activa */
+}
+
+/* Columna Derecha: Info y Compra */
+.product-purchase-info {
+    display: flex;
+    flex-direction: column;
+}
+.product-brand {
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+.product-purchase-info h1 {
+    font-size: 2.2rem;
+    margin: 0 0 20px 0;
+}
+.price-box {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+}
+.current-price-detail {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #3498db;
+}
+.old-price-detail {
+    font-size: 1.5rem;
+    color: #777;
+    text-decoration: line-through;
+}
+.discount-tag {
+    background-color: #f56954;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.stock-info {
+    color: #27ae60; /* Verde */
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+.add-to-cart-button-detail {
+    padding: 18px;
+    font-size: 1.2rem;
+    background-color: #27ae60; /* Verde Jumbo */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: background-color 0.2s;
+}
+.add-to-cart-button-detail:hover {
+    background-color: #229954;
+}
+.back-link {
+    color: #3498db;
+    text-decoration: none;
+    margin-top: auto; /* Empuja el enlace hacia abajo */
+}
+
+/* --- Sección Inferior: Pestañas y Relacionados --- */
+.product-info-section {
+    margin-bottom: 50px;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
+.tabs-nav {
+    display: flex;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 25px;
+}
+.tab-button {
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #777;
+    position: relative;
+    border-bottom: 3px solid transparent; /* Espacio para la línea activa */
+}
+.tab-button.active {
+    color: #333;
+    font-weight: bold;
+    border-bottom-color: #3498db; /* Línea azul para la activa */
+}
+.tab-content {
+    line-height: 1.7;
+}
+
+/* --- Sección Productos Relacionados --- */
+.related-products-section {
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
 .related-products-section h2 {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 30px;
     color: #333;
+}
+
+.carousel-slide {
+    padding: 0 10px; /* Añade espacio horizontal entre las tarjetas */
+}
+
+/* Opcional: Estilos para las flechas si quieres personalizarlas */
+.slick-prev:before, .slick-next:before {
+    color: #333; /* Cambia el color de las flechas */
 }
